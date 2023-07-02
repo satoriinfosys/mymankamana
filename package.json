@@ -1,0 +1,36 @@
+{
+  "name": "elback",
+  "version": "1.0.0",
+  "description": "Elpaso Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node index.js",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/12roshan12/elback.git"
+  },
+  "author": "DevRow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/12roshan12/elback/issues"
+  },
+  "homepage": "https://github.com/12roshan12/elback#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.2",
+    "nodemailer": "^6.9.1",
+    "otp-generator": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
