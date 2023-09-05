@@ -11,7 +11,7 @@ const trip_schema = new mongoose.Schema({
     price: { type: String },
     isSpecialOffer: { type: Boolean, default: false },
     isSpanish: { type: Boolean, default: false },
-    offerPrice: String,
+    offerPrice: { type: String },
     pax2Price: String,
     pax5price: String,
     pax10price: String,
@@ -34,20 +34,20 @@ const trip_schema = new mongoose.Schema({
     description: { type: String },
     itinerary: {
         description: { type: String },
-      
+
         details: [
             {
-                head: { type: String , default:null },
-                headDetails: { type: String , default:null },
-                mode: { type: String , default:null },
-                routeItinerary: { type: String , default:null },
-                elevation: { type: String , default:null },
-                duration: { type: String , default:null },
-                overnight: { type: String , default:null },
-                included: { type: String , default:null },
-                activity: { type: String , default:null },
-                activityDuration: { type: String , default:null },
-                accomodation: { type: String , default:null },
+                head: { type: String, default: null },
+                headDetails: { type: String, default: null },
+                mode: { type: String, default: null },
+                routeItinerary: { type: String, default: null },
+                elevation: { type: String, default: null },
+                duration: { type: String, default: null },
+                overnight: { type: String, default: null },
+                included: { type: String, default: null },
+                activity: { type: String, default: null },
+                activityDuration: { type: String, default: null },
+                accomodation: { type: String, default: null },
             }
         ]
     },
