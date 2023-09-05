@@ -10,7 +10,7 @@
     "heroku-postbuild" : "cd client && npm install && npm run build"
   },
   "engines": {
-    "node": "14.x"
+    "node": "17.x"
   },
   "repository": {
     "type": "git",
