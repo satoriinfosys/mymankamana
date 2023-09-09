@@ -20,7 +20,7 @@
 const mongoose = require("mongoose");
 
 // Get the MongoDB URI from environment variables
-const dbCred = process.env.MongoDBuri;
+const dbCred = process.env.MonngoDBuri;
 
 // Check if the MongoDB URI is defined
 if (!dbCred) {
