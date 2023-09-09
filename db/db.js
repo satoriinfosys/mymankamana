@@ -16,27 +16,38 @@
 //     console.log("Connected successfully");
 // });
 
-// module.exports = db
 const mongoose = require("mongoose");
 
-// Use a consistent variable name
-const dbCred = process.env.MONGODB_URI;
+// Using consistent variable naming
+const MONGODB_URI = process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+    console.error("Error: MONGODB_URI not defined. Ensure you've set up your environment variables correctly.");
+    process.exit(1);
+}
+
+// Debug line to verify if URI is being loaded correctly
+console.log('MongoDB URI (Debugging):', MONGODB_URI);
 
 // Set Mongoose option
 mongoose.set("strictQuery", false);
 
 // Connect to MongoDB
-mongoose.connect(dbCred, {
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 .then(() => console.log("Connected successfully to MongoDB"))
-.catch(error => console.error("MongoDB connection error:", error));
+.catch(error => {
+    console.error("MongoDB connection error:", error);
+    // If you want to stop the entire process when there's a DB connection error
+    process.exit(1);
+});
 
 const db = mongoose.connection;
 
-// This might be redundant since we're handling connection errors with the promise above.
-// However, if you want to keep it for future event-based error handling, you can.
+// Event-based error handling. This can coexist with the promise-based error handling.
+// It can be useful for future or other types of errors after initial connection.
 db.on("error", error => {
     console.error("Connection error:", error);
 });
