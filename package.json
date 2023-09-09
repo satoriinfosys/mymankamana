@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": ">=14 <15"
+  },
   "name": "mymankamana",
   "version": "1.0.0",
   "description": "mymankamana Backend",
