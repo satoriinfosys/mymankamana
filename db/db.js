@@ -18,8 +18,8 @@
 
 // module.exports = db
 const mongoose = require("mongoose");
-
-const dbCred = process.env.MonngoDBuri;  // Using the same variable name as you provided
+const dbCred = process.env.MonngoDBuri;
+  // Using the same variable name as you provided
 
 if (!dbCred) {
     throw new Error('MongoDB URI is not set in environment variables.');
