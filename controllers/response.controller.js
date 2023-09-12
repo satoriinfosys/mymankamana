@@ -1,11 +1,12 @@
 var nodemailer = require("nodemailer");
 var transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.zoho.com', // replace with the smtp server of Joho mail
+    port: 465, // replace with the smtp port provided by Joho mail, could be 465, 587, or others
+    secure: true, // true for 465, false for other ports
     auth: {
-        user: 'inviernonepal79@gmail.com',
-        pass: 'ikezjyjknmojxzun'
-    }
-    
+        user: 'info@mymanakamatravels.com', // your Joho Mail account
+        pass: 'Manakamana1@', // your Joho Mail password
+    },
 });
 
 const { Booking_model } = require('../models/booking.model')
@@ -15,12 +16,12 @@ const { Query_model } = require("../models/query.model")
 const BookingApproval = async (req, res) => {
 
     var mailOptions = {
-        from: 'ElpasoAdmin',
+        from: 'MyManakamanaAdmin',
         to: req.body.email,
-        subject: 'Greetings from  Elpaso Adventure ',
+        subject: 'Greetings from  Mai Manakamana Tours and travel (P) Ltd ',
         html:
             `  <div>
-            <p style="text:xl">Greetings from elpaso adventure.</p>
+            <p style="text:xl">Greetings from Mai Manakamana Tours and travel (P) Ltd.</p>
 
             <p>Dear ${req.body.name.toUpperCase()},</p>
 
@@ -32,8 +33,8 @@ const BookingApproval = async (req, res) => {
         
             <p>Best regards,</p>
         
-            <p>Elpaso Adventure</p>
-            <p>+977-9847118318</p>
+            <p>Mai Manakamana Tours and travel (P) Ltd</p>
+            <p>+977-9865288330,01-4351232</p>
             <p>Thamel, Nepal</p>
           </div>`
     };
@@ -56,9 +57,9 @@ const BookingApproval = async (req, res) => {
 const BookingRejection = async (req, res) => {
 
     var mailOptions = {
-        from: 'ElpasoAdmin',
+        from: 'MyManakamanaAdmin',
         to: req.body.email,
-        subject: 'Greetings from  Elpaso Adventure ',
+        subject: 'Greetings from  Mai Manakamana Tours and travel (P) Ltd ',
         html:
             `  <div>
             <p>Dear ${req.body.name.toUpperCase()},</p>
@@ -71,8 +72,8 @@ const BookingRejection = async (req, res) => {
         
             <p>Best regards,</p>
         
-            <p>Elpaso Adventure</p>
-            <p>+977-9847118318</p>
+            <p>Mai Manakamana Tours and travel (P) Ltd</p>
+            <p>+977-9865288330,01-4351232</p>
             <p>Thamel, Nepal</p>
           </div>`
     };
@@ -95,9 +96,9 @@ const BookingRejection = async (req, res) => {
 const EnquiryResponse = async (req, res) => {
     console.log(req.body);
     var mailOptions = {
-        from: 'ElpasoAdmin',
+        from: 'MyManakamanaAdmin',
         to: req.body.email,
-        subject: 'Greetings from  Elpaso Adventure ',
+        subject: 'Greetings from  Mai Manakamana Tours and travel (P) Ltd ',
         html:
             `  <div>
             <p>Dear ${req.body.name.toUpperCase()},</p>
@@ -112,8 +113,8 @@ const EnquiryResponse = async (req, res) => {
         
             <p>Best regards,</p>
         
-            <p>Elpaso Adventure</p>
-            <p>+977-9847118318</p>
+            <p>Mai Manakamana Tours and travel (P) Ltd</p>
+            <p>+977-9865288330,01-4351232</p>
             <p>Thamel, Nepal</p>
           </div>`
     };

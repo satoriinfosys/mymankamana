@@ -45,24 +45,26 @@ const SendOtpModel = (req) => {
                 else {
                     let otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false });
                     var transporter = nodemailer.createTransport({
-                        service: 'gmail',
+                        host: 'smtp.zoho.com', // replace with the smtp server of Joho mail
+                        port: 465, // replace with the smtp port provided by Joho mail, could be 465, 587, or others
+                        secure: true, // true for 465, false for other ports
                         auth: {
-                            user: 'inviernonepal79@gmail.com',
-                            pass: 'ikezjyjknmojxzun'
-                        }
+                            user: 'info@mymanakamatravels.com', // your Joho Mail account
+                            pass: 'Manakamana1@', // your Joho Mail password
+                        },
                     });
 
                     User_model.findOneAndUpdate({ email: req.body.email }, { $set: { temporaryOtp: otp } }, { new: true })
 
                     if (req.body.type == 'forgot-password') {
                         var mailOptions = {
-                            from: 'ElpasoAdmin',
+                            from: 'MyManakamanaAdmin',
                             to: req.body.email,
-                            subject: 'Greetings from  Elpaso Adventure ',
+                            subject: 'Greetings from  Mai Manakamana Tours and travel (P) Ltd ',
                             html:
                                 `<div class="container"
                                     style="max-width: 90%; margin: auto; padding-top: 20px">
-                                    <h2>Greetings from elpaso adventure.</h2>
+                                    <h2>Greetings from Mai Manakamana Tours and travel (P) Ltd.</h2>
                                     <h4>Don't worry we got your back.</h4>
                                     <p style="margin-bottom: 30px;">Here is your otp to change your password.</p>
                                     <h1 style="font-size: 40px; letter-spacing: 2px; text-align:center;">${otp}</h1>
@@ -120,21 +122,23 @@ const ForgotPasswordModel = (req) => {
                 else {
                     let otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false });
                     var transporter = nodemailer.createTransport({
-                        service: 'gmail',
+                        host: 'smtp.zoho.com', // replace with the smtp server of Joho mail
+                        port: 465, // replace with the smtp port provided by Joho mail, could be 465, 587, or others
+                        secure: true, // true for 465, false for other ports
                         auth: {
-                            user: 'inviernonepal79@gmail.com',
-                            pass: 'ikezjyjknmojxzun'
-                        }
+                            user: 'info@mymanakamatravels.com', // your Joho Mail account
+                            pass: 'Manakamana1@', // your Joho Mail password
+                        },
                     });
 
                     var mailOptions = {
-                        from: 'ElpasoAdmin',
+                        from: 'MyManakamanaAdmin',
                         to: req.body.email,
-                        subject: 'Greetings from  Elpaso Adventure ',
+                        subject: 'Greetings from  Mai Manakamana Tours and travel (P) Ltd ',
                         html:
                             `<div class="container"
                                 style="max-width: 90%; margin: auto; padding-top: 20px">
-                                <h2>Greetings from elpaso adventure.</h2>
+                                <h2>Greetings from Mai Manakamana Tours and travel (P) Ltd.</h2>
                                 <h4>Don't worry we got your back.</h4>
                                 <p style="margin-bottom: 30px;">Here is your otp to change your password.</p>
                                 <h1 style="font-size: 40px; letter-spacing: 2px; text-align:center;">${otp}</h1>

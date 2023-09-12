@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 
 var nodemailer = require("nodemailer");
 var transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.zoho.com', // replace with the smtp server of Joho mail
+    port: 465, // replace with the smtp port provided by Joho mail, could be 465, 587, or others
+    secure: true, // true for 465, false for other ports
     auth: {
-        user: 'inviernonepal79@gmail.com',
-        pass: 'ikezjyjknmojxzun'
-    }
+        user: 'info@mymanakamatravels.com', // your Joho Mail account
+        pass: 'Manakamana1@', // your Joho Mail password
+    },
 });
 
 const Booking_schema = new mongoose.Schema({
@@ -44,8 +46,8 @@ const NewBookingModel = (req) => {
                     resolve({ status: 200, error: null, data: data })
 
                     var mailOptions = {
-                        from: 'ElpasoAdmin',
-                        to: 'inviernonepal79@gmail.com',
+                        from: 'MyManakamanaAdmin',
+                        to: 'info@mymanakamatravels.com',
                         subject: 'New Booking Alert',
                         html:
                             `  <div>
