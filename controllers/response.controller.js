@@ -4,8 +4,8 @@ var transporter = nodemailer.createTransport({
     port: 465, // replace with the smtp port provided by Joho mail, could be 465, 587, or others
     secure: true, // true for 465, false for other ports
     auth: {
-        user: 'info@mymanakamatravels.com', // your Joho Mail account
-        pass: 'Manakamana1@', // your Joho Mail password
+        user: 'info@mymanakamanatravels.com', // your Joho Mail account
+        pass: 'Uzw2mQUcHQf8', // your Joho Mail password
     },
 });
 
