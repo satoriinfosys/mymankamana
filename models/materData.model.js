@@ -1,22 +1,23 @@
 const mongoose = require('mongoose');
 
 const Master_schema = new mongoose.Schema({
-    agencyCode:String,
-    name: { type: String},
-    logo: { type: String},
-    footerBio: { type: String},
-    bannerBio: { type: String},
-    bannerQuote: { type: String},
-    aboutUsImage: { type: String},
-    bannerImage: { type: String},
-    aboutUsDescription: { type: String},
+    agencyCode: String,
+    name: { type: String, default: 'Do not delete this' },
+    logo: { type: String },
+    footerBio: { type: String },
+    bannerBio: { type: String },
+    bannerQuote: { type: String },
+    aboutUsImage: { type: String },
+    bannerImage: { type: String },
+    aboutUsDescription: { type: String },
     services: [],
-    facebookLink: { type: String},
-    instagramLink: { type: String},
-    youtubeLink: { type: String},
-    address: { type: String},
-    email: { type: String},
-    contact: { type: String},
+    facebookLink: { type: String },
+    instagramLink: { type: String },
+    youtubeLink: { type: String },
+    status: { type: Boolean, default: true },
+    address: { type: String },
+    email: { type: String },
+    contact: { type: String },
     createdby: String,
     updatedby: String,
     createdon: { type: Date, default: Date.now() },
@@ -33,7 +34,7 @@ const NewMasterModel = (req) => {
             Master_table = new Master_model(req.body)
             Master_table.save((err, data) => {
                 if (err) resolve({ status: 500, error: true, err: err })
-                else resolve({ status: 200, error: null, data: data,message:"Master Data Successfully Added" })
+                else resolve({ status: 200, error: null, data: data, message: "Master Data Successfully Added" })
             })
         }
         else {
@@ -44,7 +45,7 @@ const NewMasterModel = (req) => {
                         resolve({ status: 400, error: true, err: 'Master Data Not Found' })
                     }
                     else {
-                        resolve({ status: 200, error: null,data:null, message: 'Master Data Successfully Updated' })
+                        resolve({ status: 200, error: null, data: null, message: 'Master Data Successfully Updated' })
                     }
                 }
             })
@@ -55,7 +56,7 @@ const NewMasterModel = (req) => {
 
 const GetAllMasterModel = (req) => {
     return new Promise((resolve, reject) => {
-        Master_model.find({agencyCode:req.params.agencyCode}, function (err, data) {
+        Master_model.find({ agencyCode: req.params.agencyCode }, function (err, data) {
             if (err) resolve({ status: 500, error: true, err: err })
             else resolve({ status: 200, error: null, data: data })
         })
@@ -79,4 +80,4 @@ const MasterDeleteModel = (req) => {
     })
 }
 
-module.exports = { NewMasterModel, MasterDeleteModel, GetAllMasterModel }
+module.exports = { NewMasterModel, MasterDeleteModel, GetAllMasterModel, Master_model }

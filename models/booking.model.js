@@ -46,7 +46,7 @@ const NewBookingModel = (req) => {
                     resolve({ status: 200, error: null, data: data })
 
                     var mailOptions = {
-                        from: 'MyManakamanaAdmin',
+                        from: 'info@mymanakamanatravels.com',
                         to: 'info@mymanakamanatravels.com',
                         subject: 'New Booking Alert',
                         html:

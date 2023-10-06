@@ -58,7 +58,7 @@ const SendOtpModel = (req) => {
 
                     if (req.body.type == 'forgot-password') {
                         var mailOptions = {
-                            from: 'MyManakamanaAdmin',
+                            from: 'info@mymanakamanatravels.com',
                             to: req.body.email,
                             subject: 'Greetings from  Mai Manakamana Tours and travel (P) Ltd ',
                             html:
@@ -134,7 +134,7 @@ const ForgotPasswordModel = (req) => {
                     console.log('trasporter initiated');
 
                     var mailOptions = {
-                        from: 'MyManakamanaAdmin',
+                        from: 'info@mymanakamanatravels.com',
                         to: req.body.email,
                         subject: 'Greetings from  Mai Manakamana Tours and travel (P) Ltd ',
                         html:

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const { S3Client, PutObjectCommand, GetObjectCommand } = require('@aws-sdk/client-s3');
+
 const dotenv = require('dotenv');
 dotenv.config();
 const crypto = require('crypto');
@@ -11,10 +12,10 @@ const sharp = require('sharp');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-const bucketName = 'parash-limo-final';
-const region = 'us-east-1';
-const accessKeyId = 'YOUR_ACCESS_KEY_ID';
-const secretAccessKey = 'YOUR_SECRET_ACCESS_KEY';
+const bucketName = process.env.AWS_BUCKET_NAME
+const region = process.env.AWS_BUCKET_REGION
+const accessKeyId = process.env.AWS_ACCESS_KEY
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 
 const s3Client = new S3Client({
     region,
@@ -24,24 +25,27 @@ const s3Client = new S3Client({
     },
 });
 
-router.post('/upload', upload.single('image'), async (req, res) => {
-    console.log(req);
 
-    const file = req.file;
-    const fileBuffer = await sharp(file.buffer).toBuffer();
-    const fileName = file.originalname;
-    const uploadParams = {
-        Bucket: bucketName,
-        Body: fileBuffer,
-        Key: fileName,
-        ContentType: file.mimetype,
-    };
 
+router.post('/upload', async (req, res) => {
+    const image = req.files?.image;
+    if (!image) return res.status(400).send('Upload Error');
+    const fileName = Date.now() + image.name;
     try {
+        const fileBuffer = await sharp(image.data).toBuffer();
+
+        const uploadParams = {
+            Bucket: bucketName,
+            Body: fileBuffer,
+            Key: fileName,
+            ContentType: image.mimetype
+        };
+
         await s3Client.send(new PutObjectCommand(uploadParams));
-        res.send({ fileName });
+        res.send({ status: "success", path: fileName });
     } catch (error) {
-        res.status(500).json(error);
+        console.error("Error uploading to S3:", error);
+        res.status(500).send('Error uploading to S3');
     }
 });
 

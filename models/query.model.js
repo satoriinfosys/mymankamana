@@ -47,7 +47,7 @@ const NewQueryModel = (req) => {
                     resolve({ status: 200, error: null, data: data, message: "Successfully placed query.Please check your mail for response" })
 
                     var mailOptions = {
-                        from: 'MyManakamanaAdmin',
+                        from: 'info@mymanakamanatravels.com',
                         to: 'info@mymanakamanatravels.com',
                         subject: 'New Enquiry Alert',
                         html:

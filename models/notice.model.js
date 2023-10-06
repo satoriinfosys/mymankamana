@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const notice_schema = new mongoose.Schema({
-    name: { type: String, required: true },
-    image: { type: String, required: true },
-    description: { type: String, required: true },
+    name: { type: String, required: true,default:'Do not delete this' },
+    image: { type: String },
+    description: { type: String },
     createdby: String,
     updatedby: String,
     status: { type: Boolean, default: true },

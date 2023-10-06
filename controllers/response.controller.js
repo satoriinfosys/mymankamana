@@ -16,7 +16,7 @@ const { Query_model } = require("../models/query.model")
 const BookingApproval = async (req, res) => {
 
     var mailOptions = {
-        from: 'MyManakamanaAdmin',
+        from: 'info@mymanakamanatravels.com',
         to: req.body.email,
         subject: 'Greetings from  Mai Manakamana Tours and travel (P) Ltd ',
         html:
@@ -57,7 +57,7 @@ const BookingApproval = async (req, res) => {
 const BookingRejection = async (req, res) => {
 
     var mailOptions = {
-        from: 'MyManakamanaAdmin',
+        from: 'info@mymanakamanatravels.com',
         to: req.body.email,
         subject: 'Greetings from  Mai Manakamana Tours and travel (P) Ltd ',
         html:
@@ -96,7 +96,7 @@ const BookingRejection = async (req, res) => {
 const EnquiryResponse = async (req, res) => {
     console.log(req.body);
     var mailOptions = {
-        from: 'MyManakamanaAdmin',
+        from: 'info@mymanakamanatravels.com',
         to: req.body.email,
         subject: 'Greetings from  Mai Manakamana Tours and travel (P) Ltd ',
         html:
