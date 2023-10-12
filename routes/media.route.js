@@ -25,7 +25,7 @@ const s3Client = new S3Client({
     },
 });
 
-
+     
 
 router.post('/upload', async (req, res) => {
     const image = req.files?.image;
