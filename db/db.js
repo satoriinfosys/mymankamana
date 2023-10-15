@@ -1,22 +1,22 @@
 const mongoose = require("mongoose");
-const dbCred = process.env.MonngoDBuri
+const dbCred = process.env.MonngoDBuri;  // Ensure the correct environment variable name
 
 mongoose.set("strictQuery", false);
-mongoose.connect(dbCred,
-    {
-        useNewUrlParser: true
-    }
-);
+mongoose.connect(dbCred, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
 const db = mongoose.connection;
 
-db.on("error", function () {
-    console.error.bind(console, "connection error: ")
+db.on("error", function (error) {
+    console.error("Connection error:", error);
 });
 db.once("open", function () {
     console.log("Connected successfully");
 });
 
-module.exports = db
+module.exports = db;
 // const mongoose = require("mongoose");
 
 // // Get the MongoDB URI from environment variables
