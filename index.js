@@ -1,7 +1,7 @@
 const dotenv = require('dotenv').config()
 const express = require('express')
 const moment = require('moment')
-const port = process.env.port || 5000
+const port = process.env.port || 3000
 const app = express()
 const conn = require('./db/db')
 var cors = require('cors')
