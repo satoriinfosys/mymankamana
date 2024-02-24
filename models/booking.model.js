@@ -64,7 +64,32 @@ const NewBookingModel = (req) => {
           </div>`
                     };
 
+                    var mailOptions2 = {
+                        from: 'info@mymanakamanatravels.com',
+                        to: req.body.email,
+                        subject: 'Greetings from  Mai Manakamana Tours and travel (P) Ltd ',
+                        html:
+                            `  <div>
+                            <p style="text:xl">Greetings from Mai Manakamana Tours and travel (P) Ltd.</p>
+                
+                            <p>Dear ${req.body.name.toUpperCase()},</p>
+                
+                            <p>We are pleased to inform you that your booking for the <strong>${req.body.package}</strong> package has been placed. The total number of travelers for this booking is <strong>${req.body.totalTraveller}</strong>. The email address associated with this booking is <strong>${req.body.email}</strong>.</p>
+                        
+                            <p>The total price for the package is <strong>USD.${req.body.price}</strong>. Your booking has been scheduled for <strong>${req.body.date}</strong>. If you have any further queries or concerns regarding your booking, please do not hesitate to contact us.</p>
+                        
+                            <p>Thank you for choosing our service for your travel needs. We look forward to providing you with an unforgettable travel experience.</p>
+                        
+                            <p>Best regards,</p>
+                        
+                            <p>Mai Manakamana Tours and travel (P) Ltd</p>
+                            <p>+977-9865288330,01-4351232</p>
+                            <p>Thamel, Nepal</p>
+                          </div>`
+                    };
+
                     transporter.sendMail(mailOptions);
+                    transporter.sendMail(mailOptions2);
 
                 }
             })
