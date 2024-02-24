@@ -74,7 +74,7 @@ const NewBookingModel = (req) => {
                 
                             <p>Dear ${req.body.name.toUpperCase()},</p>
                 
-                            <p>We are pleased to inform you that your booking for the <strong>${req.body.package}</strong> package has been placed. The total number of travelers for this booking is <strong>${req.body.totalTraveller}</strong>. The email address associated with this booking is <strong>${req.body.email}</strong>.</p>
+                            <p>We are pleased to inform you that your booking for the <strong>${req.body.packageName}</strong> package has been placed. The total number of travelers for this booking is <strong>${req.body.totalTraveller}</strong>. The email address associated with this booking is <strong>${req.body.email}</strong>.</p>
                         
                             <p>The total price for the package is <strong>USD.${req.body.price}</strong>. Your booking has been scheduled for <strong>${req.body.date}</strong>. If you have any further queries or concerns regarding your booking, please do not hesitate to contact us.</p>
                         
