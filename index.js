@@ -1,5 +1,5 @@
+const serverless = require('serverless-http')
 const dotenv = require('dotenv').config()
-const serverless = require('serverless-http');
 const express = require('express')
 const moment = require('moment')
 const PORT = process.env.PORT ||3000
@@ -68,3 +68,4 @@ Master_model.find({}, function (err, result) {
 app.listen(PORT, () => {
     console.log(`Server running at port : ${PORT}`);
 })
+module.exports.handler = serverless(app);
