@@ -59,7 +59,7 @@ const app = express();
 const conn = require('./db/db.js');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
-const fetch = require('node-fetch'); // Import the fetch library
+const fetch = require('node-fetch');
 const { Master_model } = require('./models/materData.model.js');
 const { tokenValidator } = require('./middlewares/verify-token.middleware');
 const serverless = require('serverless-http');
@@ -71,22 +71,17 @@ app.use(cors({
 }));
 app.use(fileUpload());
 
-// Define a route that makes a fetch request with 'no-cors' mode
+// Proxy route to fetch external resource with 'no-cors' mode
 app.get('/fetch-resource', async (req, res) => {
   try {
-    // Make a fetch request with 'no-cors' mode
     const response = await fetch('https://mymankamana.vercel.app/trip/get-all', { mode: 'no-cors' });
-    
-    // Check if the request was successful
     if (response.ok) {
-      // If successful, send a success response
-      res.send('Fetch request successful');
+      const data = await response.text(); // or .json() if the response is JSON
+      res.send(data);
     } else {
-      // If the request failed, send an error response
       res.status(response.status).send('Failed to fetch resource');
     }
   } catch (error) {
-    // Handle any errors that occur during the request
     console.error('Error fetching resource:', error);
     res.status(500).send('Internal server error');
   }
@@ -102,7 +97,7 @@ app.use('/api/query', tokenValidator, require('./routes/query.route'));
 app.use('/api/response', tokenValidator, require('./routes/response.route'));
 app.use('/api/booking', tokenValidator, require('./routes/booking.route'));
 app.use('/api/user', tokenValidator, require('./routes/user.route'));
-app.use('/blog', tokenValidator, require('./routes/blog.route'));
+app.use('/api/blog', tokenValidator, require('./routes/blog.route'));
 app.use('/api/guidline', tokenValidator, require('./routes/guidline.route'));
 app.use('/api/subscription', tokenValidator, require('./routes/subscription.route'));
 app.use('/api/master', tokenValidator, require('./routes/masterData.route'));
@@ -124,5 +119,3 @@ app.listen(PORT, () => {
 })
 
 module.exports.handler = serverless(app);
-
-
