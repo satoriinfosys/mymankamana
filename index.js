@@ -10,16 +10,23 @@ const fileUpload = require("express-fileupload");
 const { Master_model } = require('./models/materData.model.js')
 const { tokenValidator } = require('./middlewares/verify-token.middelware')
 
+module.exports = (req, res) => {
+    // Set CORS headers
+    res.setHeader('Access-Control-Allow-Origin', 'https://www.mymanakamanatravels.com');
+    // Optionally, you can allow other headers and methods
+    // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    // res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  
+    // Your existing code to handle the request and generate the response
+    // ...
+  
+    // Send the response
+    res.status(200).json({ message: 'Your response data' });
+  };
+  
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
-mongoose.set('strictQuery', false);
-
-mongoose.connect('mongodb+srv://satoriinfosys:Fbacer1$@mymankamana.hf9a9px.mongodb.net/?retryWrites=true&w=majority&appName=Mymankamana', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('Failed to connect to MongoDB', err));
-
-
 app.use(cors({
     origin: '*',
   }));
