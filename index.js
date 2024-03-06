@@ -12,8 +12,6 @@ const { Master_model } = require('./models/materData.model.js')
 const { tokenValidator } = require('./middlewares/verify-token.middelware')
 
 
-
-module.exports.handler = serverless(app);
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cors({
