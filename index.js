@@ -10,26 +10,13 @@ const fileUpload = require("express-fileupload");
 const { Master_model } = require('./models/materData.model.js')
 const { tokenValidator } = require('./middlewares/verify-token.middelware')
 
-module.exports = (req, res) => {
-    // Set CORS headers
-    res.setHeader('Access-Control-Allow-Origin', 'https://www.mymanakamanatravels.com');
-    // Optionally, you can allow other headers and methods
-    // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    // res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  
-    // Your existing code to handle the request and generate the response
-    // ...
-  
-    // Send the response
-    res.status(200).json({ message: 'Your response data' });
-  };
-  
+
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(cors({
-    origin: '*',
-  }));
+// app.use(cors({
+//     origin: '*',
+//   }));
 app.use(fileUpload());
 
 app.use('/api/category', tokenValidator, require('./routes/category.route'))
