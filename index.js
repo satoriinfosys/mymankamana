@@ -16,7 +16,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cors({
    origin: '*' ,
-  }));
+   headers: {
+    "Access-Control-Allow-Origin": "*"
+  }}));
 app.use(fileUpload());
 
 app.use('/api/category', tokenValidator, require('./routes/category.route'))
