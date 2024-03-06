@@ -1,4 +1,5 @@
 const dotenv = require('dotenv').config()
+const serverless = require('serverless-http');
 const express = require('express')
 const moment = require('moment')
 const PORT = process.env.PORT ||3000
@@ -12,6 +13,7 @@ const { tokenValidator } = require('./middlewares/verify-token.middelware')
 
 
 
+module.exports.handler = serverless(app);
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cors({
@@ -19,6 +21,7 @@ app.use(cors({
    "headers": {
     "Access-Control-Allow-Origin": "https://www.mymanakamanatravels.com"
   }}));
+
 app.use(fileUpload());
 
 app.use('/api/category', tokenValidator, require('./routes/category.route'))
