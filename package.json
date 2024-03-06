@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": "18.x"
+    "node": "18.16.0"
   },
   "name": "mymankamana",
   "version": "1.0.0",
