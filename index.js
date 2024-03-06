@@ -82,7 +82,7 @@ const conn = require('./db/db');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const { Master_model } = require('./models/materData.model.js');
-const { tokenValidator } = require('./middlewares/verify-token.middelware');
+const { tokenValidator } = require('./middlewares/verify-token.middleware');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -90,20 +90,22 @@ app.use(cors({ origin: '*' }));
 app.use(fileUpload());
 
 app.use('/api/category', tokenValidator, require('./routes/category.route'));
-app.use('/api/team', tokenValidator, require('./routes/team.route'));
-app.use('/api/notice', tokenValidator, require('./routes/notice.route'));
-app.use('/api/event', tokenValidator, require('./routes/event.route'));
-app.use('/api/trip', tokenValidator, require('./routes/trip.route'));
-app.use('/api/query', tokenValidator, require('./routes/query.route'));
-app.use('/api/response', tokenValidator, require('./routes/response.route'));
-app.use('/api/booking', tokenValidator, require('./routes/booking.route'));
-app.use('/api/user', tokenValidator, require('./routes/user.route'));
-app.use('/api/blog', tokenValidator, require('./routes/blog.route'));
-app.use('/api/guidline', tokenValidator, require('./routes/guidline.route'));
-app.use('/api/subscription', tokenValidator, require('./routes/subscription.route'));
-app.use('/api/master', tokenValidator, require('./routes/masterData.route'));
-app.use('/api/media', tokenValidator, require('./routes/media.route'));
-app.use('/api/authentication', tokenValidator, require('./routes/authentication.route'));
+app.use('/api/category', tokenValidator, require('./routes/category.route'))
+app.use('/api/team', tokenValidator, require('./routes/team.route'))
+app.use('/api/notice', tokenValidator, require('./routes/notice.route'))
+app.use('/api/event', tokenValidator, require('./routes/event.route'))
+app.use('/api/trip', tokenValidator, require('./routes/trip.route'))
+app.use('/api/query', tokenValidator, require('./routes/query.route'))
+app.use('/api/response', tokenValidator, require('./routes/response.route'))
+app.use('/api/booking', tokenValidator, require('./routes/booking.route'))
+app.use('/api/user', tokenValidator, require('./routes/user.route'))
+app.use('/api/blog', tokenValidator, require('./routes/blog.route'))
+app.use('/api/guidline', tokenValidator, require('./routes/guidline.route'))
+app.use('/api/subscription', tokenValidator, require('./routes/subscription.route'))
+app.use('/api/master', tokenValidator, require('./routes/masterData.route'))
+app.use('/api/media', tokenValidator, require('./routes/media.route'))
+app.use('/api/authentication', tokenValidator, require('./routes/authentication.route'))
+
 
 // Ensure that your database connection is established before making queries
 conn.then(() => {
@@ -131,3 +133,4 @@ conn.then(() => {
 
 // Export your Express app as a serverless function
 module.exports.handler = serverless(app);
+
