@@ -37,12 +37,30 @@ app.use('/api/master', tokenValidator, require('./routes/masterData.route'))
 app.use('/api/media', tokenValidator, require('./routes/media.route'))
 app.use('/api/authentication', tokenValidator, require('./routes/authentication.route'))
 
+// Master_model.find({}, function (err, result) {
+//     if (result.length == 0) {
+//         var futureDate = moment().add(15, 'days');
+//         var toDate = futureDate.toDate();
+//         Master_table = new Master_model({ 'createdon': toDate });
+//         Master_table.save((error, savedResult) => {
+//         });
+//     }
+// });
+
 Master_model.find({}, function (err, result) {
-    if (result.length == 0) {
+    if (err) {
+        console.error('Error occurred while querying the database:', err);
+        return;
+    }
+    
+    if (!result || result.length === 0) {
         var futureDate = moment().add(15, 'days');
         var toDate = futureDate.toDate();
         Master_table = new Master_model({ 'createdon': toDate });
         Master_table.save((error, savedResult) => {
+            if (error) {
+                console.error('Error occurred while saving data:', error);
+            }
         });
     }
 });
