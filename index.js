@@ -2,6 +2,7 @@ const dotenv = require('dotenv').config()
 const express = require('express')
 const moment = require('moment')
 const PORT = process.env.PORT ||3000
+const mongoose = require('mongoose');
 const app = express()
 const conn = require('./db/db')
 var cors = require('cors')
@@ -11,6 +12,13 @@ const { tokenValidator } = require('./middlewares/verify-token.middelware')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+
+mongoose.set('strictQuery', false);
+
+mongoose.connect('mongodb+srv://satoriinfosys:Fbacer1$@mymankamana.hf9a9px.mongodb.net/?retryWrites=true&w=majority&appName=Mymankamana', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('Failed to connect to MongoDB', err));
+
 
 app.use(cors({
     origin: '*',
