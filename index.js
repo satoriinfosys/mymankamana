@@ -5,7 +5,7 @@ const PORT = process.env.PORT ||3000
 const mongoose = require('mongoose');
 const app = express()
 const conn = require('./db/db')
-// var cors = require('cors')
+var cors = require('cors')
 const fileUpload = require("express-fileupload");
 const { Master_model } = require('./models/materData.model.js')
 const { tokenValidator } = require('./middlewares/verify-token.middelware')
@@ -14,9 +14,9 @@ const { tokenValidator } = require('./middlewares/verify-token.middelware')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-// app.use(cors({
-//     origin: '*',
-//   }));
+app.use(cors({
+   origin: 'https://www.mymanakamanatravels.com',
+  }));
 app.use(fileUpload());
 
 app.use('/api/category', tokenValidator, require('./routes/category.route'))
