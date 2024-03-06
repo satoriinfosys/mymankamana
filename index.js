@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cors({
    origin: '*' ,
-   headers: {
+   "headers": {
     "Access-Control-Allow-Origin": "https://www.mymanakamanatravels.com"
   }}));
 app.use(fileUpload());
