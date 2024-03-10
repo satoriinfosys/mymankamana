@@ -63,7 +63,7 @@ const conn = require('./db/db');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const { Master_model } = require('./models/materData.model.js');
-const { tokenValidator } = require('./middlewares/verify-token-middelware');
+const { tokenValidator } = require('./middlewares/verify-token-middleware');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
