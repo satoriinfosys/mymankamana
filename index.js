@@ -52,7 +52,6 @@
 
 // 
 
-
 const serverless = require('serverless-http');
 const dotenv = require('dotenv').config();
 const express = require('express');
@@ -62,24 +61,13 @@ const mongoose = require('mongoose');
 const app = express();
 const conn = require('./db/db');
 const cors = require('cors');
-const fileUpload = require("express-fileupload");
+const fileUpload = require('express-fileupload');
 const { Master_model } = require('./models/materData.model.js');
 const { tokenValidator } = require('./middlewares/verify-token.middelware');
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-module.exports.handler = serverless(app);
-
-mongoose.set('strictQuery', false);
-
-mongoose.connect('mongodb+srv://satoriinfosys:Fbacer1$@mymankamana.hf9a9px.mongodb.net/?retryWrites=true&w=majority&appName=Mymankamana', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('Failed to connect to MongoDB', err));
-
-app.use(cors({
-  origin: '*',
-}));
+app.use(cors({ origin: '*' }));
 app.use(fileUpload());
 
 app.use('/api/category', tokenValidator, require('./routes/category.route'));
@@ -98,27 +86,29 @@ app.use('/api/master', tokenValidator, require('./routes/masterData.route'));
 app.use('/api/media', tokenValidator, require('./routes/media.route'));
 app.use('/api/authentication', tokenValidator, require('./routes/authentication.route'));
 
-Master_model.find({}, function (err, result) {
-  if (err) {
-      console.error('Error while finding Master models:', err);
-      return; // Exit early if there's an error
-  }
-  
-  if (!result || result.length === 0) {
-      var futureDate = moment().add(15, 'days');
-      var toDate = futureDate.toDate();
-      var masterData = new Master_model({ 'createdon': toDate });
-      masterData.save((error, savedResult) => {
-          if (error) {
-              console.error('Error while saving Master model:', error);
-          } else {
-              console.log('Master model saved successfully.');
-          }
-      });
-  }
-});
+// Ensure that your database connection is established before making queries
+conn.then(() => {
+    console.log('Connected to MongoDB');
+    
+    // Query the database once connected
+    Master_model.find({}, function (err, result) {
+        if (err) {
+            console.error('Error occurred while querying the database:', err);
+            return;
+        }
 
+        if (!result || result.length === 0) {
+            var futureDate = moment().add(15, 'days');
+            var toDate = futureDate.toDate();
+            Master_table = new Master_model({ 'createdon': toDate });
+            Master_table.save((error, savedResult) => {
+                if (error) {
+                    console.error('Error occurred while saving data:', error);
+                }
+            });
+        }
+    });
+}).catch(err => console.error('Error connecting to MongoDB:', err));
 
-app.listen(PORT, () => {
-    console.log(`Server running at port : ${PORT}`);
-});
+// Export your Express app as a serverless function
+module.exports.handler = serverless(app);
