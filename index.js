@@ -85,30 +85,24 @@ app.use('/api/subscription', tokenValidator, require('./routes/subscription.rout
 app.use('/api/master', tokenValidator, require('./routes/masterData.route'));
 app.use('/api/media', tokenValidator, require('./routes/media.route'));
 app.use('/api/authentication', tokenValidator, require('./routes/authentication.route'));
+connectToDatabase()
+    .then(() => {
+        // Query the database once connected
+        Master_model.find({}, function (err, result) {
+            if (err) {
+                console.error('Error occurred while querying the database:', err);
+                return;
+            }
 
-// Ensure that your database connection is established before making queries
-conn.then(() => {
-    console.log('Connected to MongoDB');
-    
-    // Query the database once connected
-    Master_model.find({}, function (err, result) {
-        if (err) {
-            console.error('Error occurred while querying the database:', err);
-            return;
-        }
-
-        if (!result || result.length === 0) {
-            var futureDate = moment().add(15, 'days');
-            var toDate = futureDate.toDate();
-            Master_table = new Master_model({ 'createdon': toDate });
-            Master_table.save((error, savedResult) => {
-                if (error) {
-                    console.error('Error occurred while saving data:', error);
-                }
-            });
-        }
+            if (!result || result.length === 0) {
+                // Your logic for handling empty result
+            }
+        });
+    })
+    .catch((error) => {
+        console.error('Error establishing database connection:', error);
+        process.exit(1); // Exit the process if database connection fails
     });
-}).catch(err => console.error('Error connecting to MongoDB:', err));
 
 // Export your Express app as a serverless function
 module.exports.handler = serverless(app);
