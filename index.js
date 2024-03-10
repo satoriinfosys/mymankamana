@@ -65,6 +65,13 @@ const fileUpload = require('express-fileupload');
 const { Master_model } = require('./models/materData.model.js');
 const { tokenValidator } = require('./middlewares/verify-token.middelware.js');
 
+const corsOptions = {
+  origin: 'https://www.mymanakamanatravels.com',
+};
+// Enable CORS for all routes or specific routes
+app.use(cors(corsOptions));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: '*' }));
