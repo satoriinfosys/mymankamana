@@ -53,7 +53,7 @@
 // 
 
 
-
+const serverless = require('serverless-http');
 const dotenv = require('dotenv').config();
 const express = require('express');
 const moment = require('moment');
@@ -66,8 +66,10 @@ const fileUpload = require("express-fileupload");
 const { Master_model } = require('./models/materData.model.js');
 const { tokenValidator } = require('./middlewares/verify-token.middelware');
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+module.exports.handler = serverless(app);
 
 mongoose.set('strictQuery', false);
 
