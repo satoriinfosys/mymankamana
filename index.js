@@ -1,4 +1,4 @@
-const serverless = require('serverless-http');
+
 const dotenv = require('dotenv').config();
 const express = require('express');
 const moment = require('moment');
@@ -80,7 +80,7 @@ app.listen(PORT, () => {
 });
 
 // Export the Express app wrapped in a serverless function
-module.exports = serverless(app);
+
 
 // 
 
