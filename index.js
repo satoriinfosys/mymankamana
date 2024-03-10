@@ -97,24 +97,25 @@ app.use('/api/media', tokenValidator, require('./routes/media.route'));
 app.use('/api/authentication', tokenValidator, require('./routes/authentication.route'));
 
 Master_model.find({}, function (err, result) {
-    if (err) {
-        console.error('Error while finding Master models:', err);
-        return; // Exit early if there's an error
-    }
-    
-    if (!result || result.length === 0) {
-        var futureDate = moment().add(15, 'days');
-        var toDate = futureDate.toDate();
-        var masterData = new Master_model({ 'createdon': toDate });
-        masterData.save((error, savedResult) => {
-            if (error) {
-                console.error('Error while saving Master model:', error);
-            } else {
-                console.log('Master model saved successfully.');
-            }
-        });
-    }
+  if (err) {
+      console.error('Error while finding Master models:', err);
+      return; // Exit early if there's an error
+  }
+  
+  if (!result || result.length === 0) {
+      var futureDate = moment().add(15, 'days');
+      var toDate = futureDate.toDate();
+      var masterData = new Master_model({ 'createdon': toDate });
+      masterData.save((error, savedResult) => {
+          if (error) {
+              console.error('Error while saving Master model:', error);
+          } else {
+              console.log('Master model saved successfully.');
+          }
+      });
+  }
 });
+
 
 app.listen(PORT, () => {
     console.log(`Server running at port : ${PORT}`);
