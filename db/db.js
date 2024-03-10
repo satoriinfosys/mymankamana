@@ -55,8 +55,6 @@
 // });
 
 // Export the mongoose connection
-module.exports = db;
-
 const mongoose = require("mongoose");
 
 // Get the MongoDB URI from environment variables
@@ -90,5 +88,3 @@ const connectToDatabase = () => {
 
 // Export the connectToDatabase function
 module.exports = connectToDatabase;
-
-
