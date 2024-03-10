@@ -42,8 +42,8 @@
     "otp-generator": "^4.0.1",
     "serverless": "^3.38.0",
     "serverless-http": "^3.2.0",
-    "sharp": "^0.32.6",
-    "verify-token.middleware": "./middlewares/verify-token.middelware.js"
+    "sharp": "^0.32.6"
+  
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
