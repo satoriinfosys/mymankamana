@@ -60,7 +60,6 @@ const PORT = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const app = express();
 const conn = require('./db/db.js');
-const connectToDatabase = require('./db/db.js');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const { Master_model } = require('./models/materData.model.js');
