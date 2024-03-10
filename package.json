@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/12roshan12/elback#readme",
   "dependencies": {
-    "verify-token.middleware": "./middlewares/verify-token.middelware.js",
     "@aws-sdk/client-s3": "^3.421.0",
     "aws-sdk": "^2.1467.0",
     "bcryptjs": "^2.4.3",
@@ -43,7 +42,8 @@
     "otp-generator": "^4.0.1",
     "serverless": "^3.38.0",
     "serverless-http": "^3.2.0",
-    "sharp": "^0.32.6"
+    "sharp": "^0.32.6",
+    "verify-token.middleware": "./middlewares/verify-token.middelware.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
