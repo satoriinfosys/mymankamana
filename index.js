@@ -59,7 +59,7 @@ const moment = require('moment');
 const PORT = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const app = express();
-const conn = require('./db/db.js');
+const connectToDatabase = require('./db/db.js');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const { Master_model } = require('./models/materData.model.js');
@@ -92,24 +92,15 @@ app.use('/api/subscription', tokenValidator, require('./routes/subscription.rout
 app.use('/api/master', tokenValidator, require('./routes/masterData.route'));
 app.use('/api/media', tokenValidator, require('./routes/media.route'));
 app.use('/api/authentication', tokenValidator, require('./routes/authentication.route'));
+
 connectToDatabase()
-    .then(() => {
-        // Query the database once connected
-        Master_model.find({}, function (err, result) {
-            if (err) {
-                console.error('Error occurred while querying the database:', err);
-                return;
-            }
-
-            if (!result || result.length === 0) {
-                // Your logic for handling empty result
-            }
-        });
-    })
-    .catch((error) => {
-        console.error('Error establishing database connection:', error);
-        process.exit(1); // Exit the process if database connection fails
-    });
-
+  .then(() => {
+    console.log('Connected to database');
+    // Add your server setup and start code here
+  })
+  .catch((error) => {
+    console.error('Failed to connect to database:', error);
+    process.exit(1);
+  });
 // Export your Express app as a serverless function
 module.exports.handler = serverless(app);
