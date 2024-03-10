@@ -1,4 +1,4 @@
-
+require("./bin/www");
 const dotenv = require('dotenv').config();
 const express = require('express');
 const moment = require('moment');
@@ -10,6 +10,7 @@ const cors = require('cors');
 const fileUpload = require("express-fileupload");
 const { Master_model } = require('./models/materData.model.js');
 const { tokenValidator } = require('./middlewares/verify-token.middelware');
+
 
 
 app.use((req, res, next) => {
