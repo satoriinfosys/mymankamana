@@ -36,7 +36,17 @@ app.use('/api/master', tokenValidator, require('./routes/masterData.route'));
 app.use('/api/media', tokenValidator, require('./routes/media.route'));
 app.use('/api/authentication', tokenValidator, require('./routes/authentication.route'));
 
-// Query the Master_model
+
+connectToDatabase()
+  .then(() => {
+    console.log('Connected to database');
+    // Add your server setup and start code here
+  })
+  .catch((error) => {
+    console.error('Failed to connect to database:', error);
+    process.exit(1);
+  });
+
 Master_model.find({}, function (err, result) {
     if (result.length == 0) {
         var futureDate = moment().add(15, 'days');
