@@ -19,7 +19,7 @@
 
 
 
-// module.exports = db
+// db.js
 const mongoose = require("mongoose");
 
 // Get the MongoDB URI from environment variables
@@ -33,23 +33,10 @@ if (!dbCred) {
 // Set mongoose option
 mongoose.set("strictQuery", false);
 
-// Connect to MongoDB
-mongoose.connect(dbCred, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-.catch(error => {
-    console.error('Failed to connect to MongoDB:', error);
-    process.exit(1);  // Exit the application if there's an error
-});
-
-// Set up event listeners for the mongoose connection
-const db = mongoose.connection;
-
-db.on("error", function (error) {
-    console.error("Connection error:", error);
-});
-
-db.once("open", function () {
-    console.log("Connected successfully");
-});
+// Export the function to connect to the database
+module.exports = () => {
+    return mongoose.connect(dbCred, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+};
