@@ -15,7 +15,7 @@ const client = new S3Client({ region: process.env.AWS_BUCKET_REGION });
 var bodyParser = require('body-parser');
 
 // Enables CORS for all routes
-// app.use(cors({ origin: '*' }));
+app.use(cors({ origin: '*' }));
 
 
 // app.use((req, res, next) => {
