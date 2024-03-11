@@ -32,6 +32,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors({
    origin: '*',
 }));
+const corsImageModified = new Image();
+corsImageModified.crossOrigin = "Anonymous";
+corsImageModified.src = url + "?not-from-cache-please";
 app.use(fileUpload());
 
 // Define routes
