@@ -12,7 +12,16 @@ const { Master_model } = require('./models/materData.model.js');
 const { tokenValidator } = require('./middlewares/verify-token.middelware');
 const client = new S3Client({ region: process.env.AWS_BUCKET_REGION });
 
+var bodyParser = require('body-parser');
 
+//enables cors
+app.use(cors({
+  'allowedHeaders': ['sessionId', 'Content-Type'],
+  'exposedHeaders': ['sessionId'],
+  'origin': '*',
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'preflightContinue': false
+}));
 
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -30,9 +39,6 @@ const client = new S3Client({ region: process.env.AWS_BUCKET_REGION });
 // Express app configuration
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors({
-   origin: ['*','https://www.mymanakamanatravels.com']
-}));
 app.use(fileUpload());
 
 // Define routes
